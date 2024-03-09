@@ -1,0 +1,80 @@
+
+<html>
+<head>
+<link rel="stylesheet" href="stylesheet.css">
+<meta property="og:title" content="Coins">
+<meta property="og:description" content="See the current prices and the 24 hour % change in selected coins">
+<meta property="og:image" content="https://hemirt.com/donate.png">
+<meta property="og:url" content="https://hemirt.com/coins.html">
+<title>Coins</title>
+</head>
+<body id="maindiv">
+<h1>Coins:</h1>
+<div style="display:flex;" id="coins"></div>
+<footer></footer>
+<script src="/footer.js"></script>
+<div id="disclaimer"><span>Data provided by <a href="https://www.coingecko.com/">CoinGecko</a></span></div>
+<script>
+const coins = ["btc", "eth", "doge", "xmr", "bnb", "matic", "ltc"]
+echo = ""
+
+fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd')
+  .then((response) => response.json())
+  .then((data) => {
+    let echo = `
+      <table style="font-size:inherit;">
+        <tr>
+          <th>Coin</th>
+          <th colspan=2>Current price (USD)</th>
+          <th>24H change (%)</th>
+        </tr>
+    `;
+
+    for (const element of data) {
+      if (
+        coins.includes(element.id.toLowerCase()) ||
+        coins.includes(element.symbol.toLowerCase()) ||
+        coins.includes(element.name.toLowerCase())
+      ) {
+        val1 = element.current_price.toFixed(2).toString().match(/([\d]+).*/);
+        val2 = element.current_price.toFixed(2).toString().match(/[\d]+(.*)/);
+        if (val1 === null) val1 = "??"; else val1 = val1[1];
+        if (val2 === null) val2 = ".??"; else val2 = val2[1];
+        echo += `
+          <tr>
+            <td style="text-align: center">${element.name}</td>
+            <td style="text-align: right; padding-right: 0px;" >${val1}</td>
+            <td style="text-align: left; padding-left: 0px;" >${val2}</td>
+            <td style="text-align: center">${(element.price_change_percentage_24h + Number.EPSILON).toFixed(2)}%</td>
+          </tr>
+        `;
+      }
+    }
+
+    echo += '</table>';
+    document.getElementById('coins').innerHTML = echo;
+  })
+</script>
+<script src="js/live2d-widget/lib/L2Dwidget.min.js" type="text/javascript"></script>
+<script>
+L2Dwidget.init({
+    "pluginRootPath": "live2d-widget/",
+    "pluginJsPath": "lib/",
+    "pluginModelPath": "assets/",
+    "tagMode": false,
+    "debug": true, "model": {
+    "jsonPath": "js/live2d-widget/assets/mikoto.model.json"
+    },
+    "display": {
+    "position": "left",
+    "width":200,
+    "height":400
+    },
+    "mobile": {
+    "show": true
+    },
+    "log": false
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+html {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+}
+body {
+    /*top: 0px; left: 0px;*/
+    background-color: black;
+    background-image: url("donate.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom right;
+    margin: 0;
+    padding: 8px;
+}
+.nowrap {
+    overflow-wrap: break-word;
+}
+.text-dec-none {
+    text-decoration: none;
+}
+#donolist {
+    overflow-y: scroll;
+    height: 65%;
+
+    /*-ms-overflow-style: none;
+    scrollbar-width: none;*/
+}
+/*#donolist::-webkit-scrollbar {
+    display: none;
+}*/
+.post {
+    white-space: pre-line;
+}
+#maindiv {
+    white-space: pre-wrap;
+    font-family: "Courier New", monospace;
+    text-shadow: 1px 1px #000000;
+    font-size: 25px;
+    color: #FFFFFF;
+}
+footer {
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+#disclaimer {
+    bottom: 0;
+    position: fixed;
+    font-size: small;
+    right: 1em;
+    display: flex;
+}
+a:link, a:active, a:visited{ color: lightblue; }
+a:hover { color: rgb(144, 198, 216)}
+
+img {
+    vertical-align: middle;
+    height: 96px;
+}
+
+h1 {
+    display: inline-block;
+}
+
+#live2d-widget {
+    position: fixed;
+    z-index: -1;
+}
+
+#filter {
+    color: white;
+    background-color: black;
+    border: 2px;
+    border-style: solid;
+    border-color: gray;
+}
+
+#filter:focus {
+    color: white;
+    background-color: black;
+    border: 2px;
+    border-style: solid;
+    border-color: gray;
+    outline: none;
+}
+
+.rainbow-letters span:nth-child(10n + 1) {
+    color:red;
+}
+.rainbow-letters span:nth-child(10n + 2) {
+    color:orange;
+}
+.rainbow-letters span:nth-child(10n + 3) {
+    color:yellow;
+}
+.rainbow-letters span:nth-child(10n + 4) {
+    color:green;
+}
+.rainbow-letters span:nth-child(10n + 5) {
+    color:blue;
+}
+.rainbow-letters span:nth-child(10n + 6) {
+    color:indigo;
+}
+.rainbow-letters span:nth-child(10n + 7) {
+    color:violet;
+}
